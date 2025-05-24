@@ -89,7 +89,7 @@ def battle_loop(
             if not quiz_30_triggered and hp_percent <= 0.3:
                 quiz_mode = True
                 quiz_30_triggered = True
-                current_quiz_index = 0  # Only one question!
+                current_quiz_index = 0
                 quiz_result = None
                 selected_option = 0
 
@@ -156,7 +156,12 @@ def battle_loop(
 
         # Show current turn
         turn_info: str = f"{turn.capitalize()}'s turn - Press SPACE to attack"
-        screen.blit(get_font().render(turn_info, True, (255, 255, 255)), (WIDTH // 2 - 100, HEIGHT - 100))
+        font_turn: pygame.font.Font = get_font()
+        turn_surface: pygame.Surface = font_turn.render(turn_info, True, (255, 255, 255))
+        turn_rect: pygame.Rect = turn_surface.get_rect(centerx=WIDTH // 2)
+        turn_rect.bottom = HEIGHT - 40  # Adjust vertical position here
+        screen.blit(turn_surface, turn_rect)
+
 
         pygame.display.flip()
 

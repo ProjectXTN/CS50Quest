@@ -4,6 +4,7 @@ import sys
 from typing import Tuple
 from config import WIDTH, HEIGHT, FPS, TITLE, BG_COLOR
 from map.map import draw_map, level_map, TILE_SIZE
+from intro.show_intro_screen import show_intro_screen 
 from player.player import AnimatedPlayer
 from monsters.util import find_first_free_tile
 from battle.battle import battle_loop
@@ -18,6 +19,12 @@ def main() -> None:
     pygame.init()
     screen: pygame.Surface = pygame.display.set_mode((WIDTH, HEIGHT))
     pygame.display.set_caption(TITLE)
+    
+    
+    # --- Show intro screen before the game starts ---
+    intro_path: str = os.path.join("assets", "intro", "player_intro.png")
+    show_intro_screen(screen, intro_path)
+    
     clock: pygame.time.Clock = pygame.time.Clock()
     draw_map(screen)
 
