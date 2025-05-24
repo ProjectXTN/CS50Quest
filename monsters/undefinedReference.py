@@ -16,6 +16,5 @@ class UndefinedReference(Enemy):
                 "B) There is a missing semicolon in the code"
             ],
             quiz_answer=0,
-            map_image_path=os.path.join("assets", "monsters", "segfault_icon.png"),
             battle_image_path=os.path.join("assets", "monsters", "undefined2.png")
         )

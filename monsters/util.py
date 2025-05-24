@@ -7,49 +7,60 @@ def astar(
     goal: Tuple[int, int],
     tile_size: int
 ) -> Optional[List[Tuple[int, int]]]:
-    width: int = len(level_map[0])
-    height: int = len(level_map)
-    start_cell: Tuple[int, int] = (start[0] // tile_size, start[1] // tile_size)
-    goal_cell: Tuple[int, int] = (goal[0] // tile_size, goal[1] // tile_size)
-    dirs: List[Tuple[int, int]] = [(-1, 0), (1, 0), (0, -1), (0, 1)]
+    map_width: int = len(level_map[0])
+    map_height: int = len(level_map)
 
-    def heuristic(a: Tuple[int, int], b: Tuple[int, int]) -> int:
+    start_tile: Tuple[int, int] = (start[0] // tile_size, start[1] // tile_size)
+    goal_tile: Tuple[int, int] = (goal[0] // tile_size, goal[1] // tile_size)
+
+    directions: List[Tuple[int, int]] = [(-1, 0), (1, 0), (0, -1), (0, 1)]
+
+    def manhattan_heuristic(a: Tuple[int, int], b: Tuple[int, int]) -> int:
         return abs(a[0] - b[0]) + abs(a[1] - b[1])
 
-    open_set: List[Tuple[int, Tuple[int, int]]] = []
-    heapq.heappush(open_set, (0, start_cell))
-    came_from: Dict[Tuple[int, int], Tuple[int, int]] = {}
-    g_score: Dict[Tuple[int, int], int] = {start_cell: 0}
+    open_nodes: List[Tuple[int, Tuple[int, int]]] = []
+    heapq.heappush(open_nodes, (0, start_tile))
 
-    while open_set:
-        _, current = heapq.heappop(open_set)
-        if current == goal_cell:
-            path: List[Tuple[int, int]] = [current]
-            while current in came_from:
-                current = came_from[current]
-                path.append(current)
+    came_from: Dict[Tuple[int, int], Tuple[int, int]] = {}
+    g_score: Dict[Tuple[int, int], int] = {start_tile: 0}
+
+    walkable_tile_types: List[int] = [0, 2]
+
+    while open_nodes:
+        _, current_position = heapq.heappop(open_nodes)
+
+        if current_position == goal_tile:
+            path: List[Tuple[int, int]] = [current_position]
+            while current_position in came_from:
+                current_position = came_from[current_position]
+                path.append(current_position)
             path.reverse()
             return path
 
-        for dx, dy in dirs:
-            neighbor = (current[0] + dx, current[1] + dy)
-            if 0 <= neighbor[0] < width and 0 <= neighbor[1] < height:
-                if level_map[neighbor[1]][neighbor[0]] != 0:
+        for dx, dy in directions:
+            neighbor_position: Tuple[int, int] = (
+                current_position[0] + dx,
+                current_position[1] + dy
+            )
+
+            if 0 <= neighbor_position[0] < map_width and 0 <= neighbor_position[1] < map_height:
+                tile_value: int = level_map[neighbor_position[1]][neighbor_position[0]]
+
+                if tile_value not in walkable_tile_types:
                     continue
-                tentative_g = g_score[current] + 1
-                if neighbor not in g_score or tentative_g < g_score[neighbor]:
-                    came_from[neighbor] = current
-                    g_score[neighbor] = tentative_g
-                    f = tentative_g + heuristic(neighbor, goal_cell)
-                    heapq.heappush(open_set, (f, neighbor))
+
+                tentative_score: int = g_score[current_position] + 1
+                if neighbor_position not in g_score or tentative_score < g_score[neighbor_position]:
+                    came_from[neighbor_position] = current_position
+                    g_score[neighbor_position] = tentative_score
+                    estimated_cost: int = tentative_score + manhattan_heuristic(neighbor_position, goal_tile)
+                    heapq.heappush(open_nodes, (estimated_cost, neighbor_position))
+
     return None
 
 def find_first_free_tile(level_map: List[List[int]]) -> Tuple[int, int]:
-    """
-    Returns the (x, y) of the first walkable tile (tile == 0) in the map.
-    """
     for y, row in enumerate(level_map):
-        for x, tile in enumerate(row):
-            if tile == 0:
+        for x, tile_value in enumerate(row):
+            if tile_value == 0:
                 return x, y
-    return 0, 0  # Fallback (should never happen if map has at least one 0)
+    return (0, 0)

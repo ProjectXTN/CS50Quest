@@ -16,6 +16,5 @@ class memoryLeak(Enemy):
                 "B) Using printf without including stdio.h"
             ],
             quiz_answer=0,
-            map_image_path=os.path.join("assets", "monsters", "segfault_icon.png"),
             battle_image_path=os.path.join("assets", "monsters", "memorryleak2.png")
         )

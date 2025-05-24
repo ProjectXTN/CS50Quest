@@ -16,6 +16,5 @@ class bufferOverFlow(Enemy):
                 "B) Writing past the end of an array"
             ],
             quiz_answer=1,
-            map_image_path=os.path.join("assets", "monsters", "segfault_icon.png"),
             battle_image_path=os.path.join("assets", "monsters", "bufferover2.png")
         )

@@ -16,6 +16,5 @@ class segmentationFault(Enemy):
                 "B) Accessing memory you don't own"
             ],
             quiz_answer=1,
-            map_image_path=os.path.join("assets", "monsters", "segfault_icon.png"),
             battle_image_path=os.path.join("assets", "monsters", "segfault2.png")
         )

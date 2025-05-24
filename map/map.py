@@ -30,7 +30,8 @@ level_map: List[List[int]] = [
 # Load tile images for each tile type
 TILE_IMAGES: Dict[int, pygame.Surface] = {
     0: pygame.image.load("assets/tiles/grass.png"),
-    1: pygame.image.load("assets/tiles/wall.png")
+    1: pygame.image.load("assets/tiles/wall.png"),
+    2: pygame.image.load("assets/tiles/box_reward_32x32.png"),
 }
 
 def draw_map(screen: pygame.Surface) -> None:

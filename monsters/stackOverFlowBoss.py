@@ -10,7 +10,7 @@ class StackOverflowBoss(Enemy):
             hp=200,
             damage=25,
             color=(200, 0, 100),
-            speed=1,
+            speed=3,
             quiz_question=[
                 "What causes a stack overflow in most programming languages?",
                 "What is a common sign of a stack overflow during execution?"
@@ -30,6 +30,5 @@ class StackOverflowBoss(Enemy):
                 ]
             ],
             quiz_answer=[3, 1],
-            map_image_path=os.path.join("assets", "monsters", "stackoverflow_icon.png"),
             battle_image_path=os.path.join("assets", "monsters", "stackover_boss2.png")
         )

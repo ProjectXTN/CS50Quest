@@ -36,7 +36,7 @@ def main() -> None:
     # --- Create multiple enemies ---
     enemies: pygame.sprite.Group = pygame.sprite.Group()
     enemies.add(
-        segmentationFault(3 * TILE_SIZE, 5 * TILE_SIZE),
+        segmentationFault(5 * TILE_SIZE, 5 * TILE_SIZE),
         UndefinedReference(14 * TILE_SIZE, 3 * TILE_SIZE),
         memoryLeak(5 * TILE_SIZE, 13 * TILE_SIZE),
         bufferOverFlow(16 * TILE_SIZE, 15 * TILE_SIZE),
