@@ -3,10 +3,10 @@ import pygame
 import sys
 from typing import Tuple
 from config import WIDTH, HEIGHT, FPS, TITLE, BG_COLOR
-from map import draw_map, level_map, TILE_SIZE
+from map.map import draw_map, level_map, TILE_SIZE
 from player.player import AnimatedPlayer
 from monsters.util import find_first_free_tile
-from battle import battle_loop
+from battle.battle import battle_loop
 from monsters.segmentationFault import segmentationFault
 from monsters.undefinedReference import UndefinedReference
 from monsters.memoryLeak import memoryLeak

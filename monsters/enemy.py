@@ -1,7 +1,7 @@
 import pygame
 import os
 from typing import List, Tuple, Optional, Any
-from map import TILE_SIZE
+from map.map import TILE_SIZE
 from .util import astar
 
 class Enemy(pygame.sprite.Sprite):

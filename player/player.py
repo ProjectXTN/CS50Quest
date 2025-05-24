@@ -1,7 +1,7 @@
 import pygame
 import os
 from typing import Dict, List, Any
-from map import level_map, TILE_SIZE
+from map.map import level_map, TILE_SIZE
 
 ANIMATION_DELAY: int = 150  # milliseconds
 FRAME_WIDTH: int = 32
