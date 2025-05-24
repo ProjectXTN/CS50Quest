@@ -70,7 +70,7 @@ venv\Scripts\activate
 source venv/bin/activate
 
 # 4. Install dependencies (always with venv activated)
-pip install pygame
+pip install -r requirements.txt
 
 If you forget to activate your virtual environment, the required packages might not be found when you try to run the game.
 Always make sure your venv is activated before running or installing!
