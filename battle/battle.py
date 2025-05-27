@@ -149,3 +149,12 @@ def battle_loop(screen: pygame.Surface, player: Any, enemy: Any) -> Optional[boo
         if player_hp <= 0:
             player.hp = 0
             return False
+        
+def show_game_over(screen):
+    font = get_font(48, bold=True)
+    msg = font.render("GAME OVER", True, (255, 50, 50))
+    msg_rect = msg.get_rect(center=(WIDTH // 2, HEIGHT // 2))
+    screen.fill((30, 30, 30))
+    screen.blit(msg, msg_rect)
+    pygame.display.flip()
+    pygame.time.delay(2000)
