@@ -3,11 +3,8 @@ import sys
 from pygame.surface import Surface
 from config import WIDTH, HEIGHT
 
-def show_intro_screen(
-    screen: Surface,
-    image_path: str,
-    duration: int = 2000
-) -> None:
+
+def show_intro_screen(screen: Surface, image_path: str, duration: int = 2000) -> None:
     """
     Displays a full-screen intro image for a set duration or until the user presses a key or mouse button.
 
@@ -19,7 +16,7 @@ def show_intro_screen(
     # Load and scale the image to fit the screen
     image: Surface = pygame.image.load(image_path).convert()
     image = pygame.transform.scale(image, (WIDTH, HEIGHT))
-    
+
     # Display the image on the screen
     screen.blit(image, (0, 0))
     pygame.display.flip()

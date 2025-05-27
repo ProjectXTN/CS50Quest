@@ -7,18 +7,16 @@ ANIMATION_DELAY: int = 150  # milliseconds
 FRAME_WIDTH: int = 32
 FRAME_HEIGHT: int = 32
 
+
 class AnimatedPlayer(pygame.sprite.Sprite):
     def __init__(
-        self,
-        x: int,
-        y: int,
-        speed: int = 2,
-        max_hp: int = 200,
-        damage: int = 25
+        self, x: int, y: int, speed: int = 2, max_hp: int = 200, damage: int = 25
     ) -> None:
         super().__init__()
         # Loads the player spritesheet with transparency
-        self.spritesheet: pygame.Surface = pygame.image.load("assets/player/spritesheet_nerd_128x128.png").convert_alpha()
+        self.spritesheet: pygame.Surface = pygame.image.load(
+            "assets/player/spritesheet_nerd_128x128.png"
+        ).convert_alpha()
         self.max_hp: int = max_hp
         self.hp: int = max_hp
         self.damage: int = damage
@@ -41,21 +39,25 @@ class AnimatedPlayer(pygame.sprite.Sprite):
 
         self.image: pygame.Surface = self.animations["idle"][0]
         self.rect: pygame.Rect = self.image.get_rect(topleft=(x, y))
-        
+
         # ---- BATTLE: player battle image ----
         battle_path: str = os.path.join("assets", "player", "player-battle.png")
         battle_raw: pygame.Surface = pygame.image.load(battle_path).convert_alpha()
-        self.battle_image: pygame.Surface = pygame.transform.scale(battle_raw, (128, 128))
+        self.battle_image: pygame.Surface = pygame.transform.scale(
+            battle_raw, (128, 128)
+        )
 
     def load_frames(self, row: int, cols: List[int]) -> List[pygame.Surface]:
         return [self.get_frame(col, row) for col in cols]
 
     def get_frame(self, col: int, row: int) -> pygame.Surface:
-        frame: pygame.Surface = pygame.Surface((FRAME_WIDTH, FRAME_HEIGHT), pygame.SRCALPHA)
+        frame: pygame.Surface = pygame.Surface(
+            (FRAME_WIDTH, FRAME_HEIGHT), pygame.SRCALPHA
+        )
         frame.blit(
             self.spritesheet,
             (0, 0),
-            (col * FRAME_WIDTH, row * FRAME_HEIGHT, FRAME_WIDTH, FRAME_HEIGHT)
+            (col * FRAME_WIDTH, row * FRAME_HEIGHT, FRAME_WIDTH, FRAME_HEIGHT),
         )
         return frame
 
@@ -104,7 +106,9 @@ class AnimatedPlayer(pygame.sprite.Sprite):
         if self.state.startswith("walk"):
             if now - self.last_update > ANIMATION_DELAY:
                 self.last_update = now
-                self.frame_index = (self.frame_index + 1) % len(self.animations[self.state])
+                self.frame_index = (self.frame_index + 1) % len(
+                    self.animations[self.state]
+                )
             self.image = self.animations[self.state][self.frame_index]
         else:
             self.frame_index = 0
