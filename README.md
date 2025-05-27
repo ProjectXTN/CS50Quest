@@ -1,5 +1,7 @@
 # CS50Quest
 
+#### Video Demo: https://www.youtube.com/watch?v=2rcp9eXLh1A&ab_channel=Youdidn%27texpectthis
+
 CS50Quest is a retro-inspired, turn-based RPG designed for programmers, especially those who have braved the legendary CS50 Introduction to Computer Science course. In this game, you explore a bug-infested dungeon, facing off against monsters based on real-world programming errors—think "Segmentation Fault," "Buffer Overflow," "Memory Leak," and the dreaded "Stack Overflow."  
 Victory in battle requires not just brute force, but coding knowledge: monsters challenge you with programming quiz questions that can turn the tide of combat! The ultimate goal? Survive, learn, and reach the reward tile to unlock your CS50 diploma—proving your mastery over the course’s trickiest pitfalls.
 
@@ -114,5 +116,4 @@ Feel free to fork, contribute, or extend the project—there’s always another 
 
 Enjoy the adventure, and may your debugging always be victorious!
 
-URL Video : https://www.youtube.com/watch?v=2rcp9eXLh1A&ab_channel=Youdidn%27texpectthis
 Github : https://github.com/ProjectXTN/CS50Quest
