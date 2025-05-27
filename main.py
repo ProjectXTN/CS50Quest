@@ -77,6 +77,14 @@ def run_game(screen, clock) -> str:
 
 def main() -> None:
     pygame.init()
+    pygame.mixer.init()
+    
+    music_path = os.path.join("assets", "music", "music.wav")
+    pygame.mixer.music.load(music_path)
+    pygame.mixer.music.set_volume(0.35)
+    pygame.mixer.music.play(-1) 
+    
+    
     screen = pygame.display.set_mode((WIDTH, HEIGHT))
     pygame.display.set_caption(TITLE)
     intro_path = os.path.join("assets", "intro", "player_intro.png")
